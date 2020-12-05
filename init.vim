@@ -1,27 +1,26 @@
 " Directorio de plugins
 call plug#begin('~/.local/share/nvim/plugged')
 
+"HELPERS
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree'
-"Plug 'tsony-tsonev/nerdtree-git-plugin'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'ryanoasis/vim-devicons'
-
 Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
 Plug 'scrooloose/nerdcommenter'
-"Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-Plug 'leafOfTree/vim-vue-plugin'
-
-" install with vim-plug
-Plug 'Rigellute/shades-of-purple.vim'
-
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'morhetz/gruvbox'
+"Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+"Plug 'tsony-tsonev/nerdtree-git-plugin'
+"HIGHLIGHTS
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'leafOfTree/vim-vue-plugin'
 Plug 'leafgarland/typescript-vim'
-
 Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
+"THEMES
+Plug 'ryanoasis/vim-devicons'
+Plug 'Rigellute/shades-of-purple.vim'
+Plug 'morhetz/gruvbox'
+Plug 'dracula/vim'
 
 " Initialize plugin system
 call plug#end()
@@ -42,18 +41,6 @@ autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * NERDTree
 
 let g:NERDTreeGitStatusWithFlags = 1
-"let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-"let g:NERDTreeGitStatusNodeColorization = 1
-"let g:NERDTreeColorMapCustom = {
-    "\ "Staged"    : "#0ee375",
-    "\ "Modified"  : "#d9bf91",
-    "\ "Renamed"   : "#51C9FC",
-    "\ "Untracked" : "#FCE77C",
-    "\ "Unmerged"  : "#FC51E6",
-    "\ "Dirty"     : "#FFBD61",
-    "\ "Clean"     : "#87939A",
-    "\ "Ignored"   : "#808080"
-    "\ }
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
@@ -88,16 +75,17 @@ set expandtab
 
 "Eslint
 
-"""" enable 24bit true color
-" If you have vim >=8.0 or Neovim >= 0.1.5
 if (has("termguicolors"))
  set termguicolors
 endif
 
-"""" enable the theme
-syntax enable
-colorscheme shades_of_purple
+" SHAPE PURPLE
+"syntax enable
+"colorscheme shades_of_purple
 
+" DRACULA
+syntax enable
+colorscheme dracula
 
 " from readme
 " if hidden is not set, TextEdit might fail.
@@ -221,3 +209,19 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>all NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 
 nnoremap <c-s> <Esc>:w<CR>
+
+
+" TERMINAL
+" open new split panes to right and below
+set splitright
+set splitbelow
+" turn terminal to normal mode with escape
+tnoremap <Esc> <C-\><C-n>
+" start terminal in insert mode
+au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+" open terminal on ctrl+n
+function! OpenTerminal()
+  split term://zsh
+  resize 10
+endfunction
+nnoremap <c-m> :call OpenTerminal()<CR>
