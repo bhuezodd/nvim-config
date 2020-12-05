@@ -7,6 +7,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
+
 Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
 Plug 'scrooloose/nerdcommenter'
@@ -17,25 +18,19 @@ Plug 'leafOfTree/vim-vue-plugin'
 Plug 'Rigellute/shades-of-purple.vim'
 
 Plug 'christoomey/vim-tmux-navigator'
-
 Plug 'morhetz/gruvbox'
+Plug 'leafgarland/typescript-vim'
 
 Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
 
 " Initialize plugin system
 call plug#end()
 
-"""" enable 24bit true color
-" If you have vim >=8.0 or Neovim >= 0.1.5
-if (has("termguicolors"))
- set termguicolors
-endif
-
-"""" enable the theme
-syntax enable
-colorscheme shades_of_purple
 
 let g:vim_vue_plugin_load_full_syntax = 1
+let g:vim_vue_plugin_use_typescript = 1
+let g:vim_vue_plugin_use_sass = 1
+
 
 inoremap jk <ESC>
 nmap <C-n> :NERDTreeToggle<CR>
@@ -43,7 +38,7 @@ vmap ++ <plug>NERDCommenterToggle
 nmap ++ <plug>NERDCommenterToggle
 
 " open NERDTree automatically
-"autocmd StdinReadPre * let s:std_in=1
+autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * NERDTree
 
 let g:NERDTreeGitStatusWithFlags = 1
@@ -63,6 +58,7 @@ let g:NERDTreeGitStatusWithFlags = 1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 let g:NERDTreeIgnore = ['^node_modules$']
+
 
 " vim-prettier
 "let g:prettier#quickfix_enabled = 0
@@ -92,6 +88,15 @@ set expandtab
 
 "Eslint
 
+"""" enable 24bit true color
+" If you have vim >=8.0 or Neovim >= 0.1.5
+if (has("termguicolors"))
+ set termguicolors
+endif
+
+"""" enable the theme
+syntax enable
+colorscheme shades_of_purple
 
 
 " from readme
