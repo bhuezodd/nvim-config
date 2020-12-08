@@ -4,6 +4,11 @@
 
 In this files you will find the settings for languages, framewoks, libraries, themes and plugins to improve the experience.
 
+##### Previous installations
+
+###### Download font (Me download Hack Nerd Font)
+[Link fotns](https://github.com/ryanoasis/nerd-fonts)
+
 ##### Languages
 
 - Javascript
@@ -25,7 +30,6 @@ In this files you will find the settings for languages, framewoks, libraries, th
 - Shades of Purple
 - Dracula
 
-##### Previous installations
+##### Extensions of COC
 
-###### Download font (Me download Hack Nerd Font)
-[Link fotns](https://github.com/ryanoasis/nerd-fonts)
+[Link info](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions)
