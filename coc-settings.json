@@ -1,6 +1,6 @@
 {
   "eslint.autoFixOnSave": true,
-  "vetur.validation.template": false,
+  "vetur.validation.template": true,
   "eslint.filetypes": [
     "javascript",
     "javascriptreact",

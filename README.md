@@ -1,16 +1,31 @@
-# Configuration basic for **_NEOVIM_**
+# Neovim config
 
-```
-    Languages:
-    - Javascript
-    Frameworks and more:
-    - VueJS
-    - TailwindCSS
-    - Eslint
-    Additional settings:
-    - NerdTree (Navegation into files)
-    - Themes:
-        - Gruvbox
-        - shades-of-purple
-    - Tmux (Navegation between teils)
-```
+> Configuration for develop web
+
+In this files you will find the settings for languages, framewoks, libraries, themes and plugins to improve the experience.
+
+##### Languages
+
+- Javascript
+
+##### Frameworks and libraries
+
+- Vue
+- ReactJS
+- Typescript
+
+##### Plugins
+
+- NerdTree (View and navigate the job tree)
+- Devicons (Icons on job tree)
+
+##### Themes
+
+- Gruvbox
+- Shades of Purple
+- Dracula
+
+##### Previous installations
+
+###### Download font (Me download Hack Nerd Font)
+[Link fotns](https://github.com/ryanoasis/nerd-fonts)
