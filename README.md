@@ -11,6 +11,7 @@ In this files you will find the settings for languages, framewoks, libraries, th
 
 ##### Languages
 
+- Golang
 - Javascript
 
 ##### Frameworks and libraries

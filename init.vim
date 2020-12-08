@@ -12,7 +12,8 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'bling/vim-airline'
 "Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 "Plug 'tsony-tsonev/nerdtree-git-plugin'
-"HIGHLIGHTS
+"HIGHLIGHTS OR FUNCTION FOR THE LANGUAGE
+Plug 'fatih/vim-go'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'leafOfTree/vim-vue-plugin'
 Plug 'leafgarland/typescript-vim'
