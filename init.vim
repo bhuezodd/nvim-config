@@ -13,9 +13,10 @@ Plug 'bling/vim-airline'
 "Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 "Plug 'tsony-tsonev/nerdtree-git-plugin'
 "HIGHLIGHTS OR FUNCTION FOR THE LANGUAGE
-Plug 'fatih/vim-go'
+"Plug 'fatih/vim-go'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'leafOfTree/vim-vue-plugin'
+Plug 'storyn26383/vim-vue'
 Plug 'leafgarland/typescript-vim'
 Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
 Plug 'stephpy/vim-php-cs-fixer'
@@ -84,6 +85,19 @@ endif
 syntax enable
 colorscheme dracula
 
+let g:coc_global_extensions = [
+  \ 'coc-snippets',
+  \ 'coc-pairs',
+  \ 'coc-tsserver',
+  \ 'coc-eslint', 
+  \ 'coc-json', 
+  \ 'coc-vetur',
+  \ 'coc-git',
+  \ 'coc-eslint',
+  \ 'coc-emmet',
+  \ 'coc-jest',
+  \ 'coc-go',
+\ ]
 " from readme
 " if hidden is not set, TextEdit might fail.
 set hidden " Some servers have issues with backup files, see #649 set nobackup set nowritebackup " Better display for messages set cmdheight=2 " You will have bad experience for diagnostic messages when it's default 4000.
@@ -176,7 +190,7 @@ nmap <silent> <C-d> <Plug>(coc-range-select)
 xmap <silent> <C-d> <Plug>(coc-range-select)
 
 " Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
+command! -nargs=0 Format :call CocAction('runCommand', 'eslint.executeAutofix')
 
 " Use `:Fold` to fold current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
@@ -242,17 +256,3 @@ let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by defaul
 autocmd BufWritePost *.php silent! call PhpCsFixerFixFile()
 
 
-" TERMINAL
-" open new split panes to right and below
-set splitright
-set splitbelow
-" turn terminal to normal mode with escape
-tnoremap <Esc> <C-\><C-n>
-" start terminal in insert mode
-au BufEnter * if &buftype == 'terminal' | :startinsert | endif
-" open terminal on ctrl+n
-function! OpenTerminal()
-  split term://zsh
-  resize 10
-endfunction
-nnoremap <c-m> :call OpenTerminal()<CR>
