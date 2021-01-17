@@ -1,6 +1,6 @@
 {
+  "eslint.autoFixOnSave": true,
   "vetur.validation.template": true,
-  "suggest.noselect": false,
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
     "typescript",
@@ -8,7 +8,6 @@
     "json",
     "javascriptreact",
     "typescript.tsx",
-    "graphq",
-    "vue"
+    "graphq"
   ]
 }

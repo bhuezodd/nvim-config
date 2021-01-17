@@ -7,11 +7,10 @@ In this files you will find the settings for languages, framewoks, libraries, th
 ##### Previous installations
 
 ###### Download font (Me download Hack Nerd Font)
-[Link fotns](https://github.com/ryanoasis/nerd-fonts)
+[Link fonts](https://github.com/ryanoasis/nerd-fonts)
 
 ##### Languages
 
-- Golang
 - Javascript
 
 ##### Frameworks and libraries
@@ -24,6 +23,8 @@ In this files you will find the settings for languages, framewoks, libraries, th
 
 - NerdTree (View and navigate the job tree)
 - Devicons (Icons on job tree)
+- polyglot
+- Airline
 
 ##### Themes
 
@@ -32,5 +33,11 @@ In this files you will find the settings for languages, framewoks, libraries, th
 - Dracula
 
 ##### Extensions of COC
+- Eslint
+- Tailwindcss
+- Vetur
+- Javascript
+- emmet
+- JSON
 
 [Link info](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions)

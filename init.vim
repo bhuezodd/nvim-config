@@ -1,59 +1,57 @@
-" Directorio de plugins
-call plug#begin('~/.local/share/nvim/plugged')
+set nocompatible
+" Specify a directory for plugins
+call plug#begin(expand('~/.config/nvim/plugged'))
 
-"HELPERS
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
 Plug 'scrooloose/nerdcommenter'
+
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'bling/vim-airline'
-"Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-"Plug 'tsony-tsonev/nerdtree-git-plugin'
-"HIGHLIGHTS OR FUNCTION FOR THE LANGUAGE
-"Plug 'fatih/vim-go'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'leafOfTree/vim-vue-plugin'
-Plug 'storyn26383/vim-vue'
-Plug 'leafgarland/typescript-vim'
-Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
-Plug 'stephpy/vim-php-cs-fixer'
-"THEMES
-"Plug 'ryanoasis/vim-webdevicons'
-Plug 'ryanoasis/vim-devicons'
-Plug 'Rigellute/shades-of-purple.vim'
+
 Plug 'morhetz/gruvbox'
-Plug 'dracula/vim'
+
+Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
+
+" Vue
+Plug 'leafOfTree/vim-vue-plugin'
+
+" One Dark
+Plug 'joshdick/onedark.vim'
+
+Plug 'sheerun/vim-polyglot'
+
+" Airline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Initialize plugin system
 call plug#end()
 
-set guifont=Hack\ Font\ 11
-
-let g:vim_vue_plugin_load_full_syntax = 1
-let g:vim_vue_plugin_use_typescript = 1
-let g:vim_vue_plugin_use_sass = 1
-
-
 inoremap jk <ESC>
-nmap <C-n> :NERDTreeToggle<CR>
-vmap ++ <plug>NERDCommenterToggle
-nmap ++ <plug>NERDCommenterToggle
-
-" open NERDTree automatically
-autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * NERDTree
+autocmd VimEnter * NERDTree
 
 let g:NERDTreeGitStatusWithFlags = 1
-"let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:NERDTreeChDirMode=2
+let g:NERDTreeIgnore= ['^node_modules$', '\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
+let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
+let g:NERDTreeShowBookmarks=1
+let g:nerdtree_tabs_focus_on_files=1
+let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
+"let g:NERDTreeWinSize = 25
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
+nnoremap <silent> <C-f> :NERDTreeFind<CR>
+nnoremap <silent> <C-n> :NERDTreeToggle<CR>
 
-let g:NERDTreeIgnore = ['^node_modules$']
-
-
-
+"" Tabs
+nnoremap <Tab> gt
+nnoremap <S-Tab> gT
+nnoremap <silent> <S-t> :tabnew<CR>
 
 " ctrlp
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
@@ -71,19 +69,20 @@ set shiftwidth=2
 " always uses spaces instead of tab characters
 set expandtab
 
-"Eslint
 
+" gruvbox
+"colorscheme gruvbox
+
+" One Dark
 if (has("termguicolors"))
  set termguicolors
 endif
+syntax on
+colorscheme onedark
 
-" SHAPE PURPLE
-"syntax enable
-"colorscheme shades_of_purple
+let g:vim_vue_plugin_load_full_syntax = 1
 
-" DRACULA
-syntax enable
-colorscheme dracula
+" coc config
 
 let g:coc_global_extensions = [
   \ 'coc-snippets',
@@ -96,7 +95,7 @@ let g:coc_global_extensions = [
   \ 'coc-eslint',
   \ 'coc-emmet',
   \ 'coc-jest',
-  \ 'coc-go',
+  \ 'coc-tailwindcss',
 \ ]
 " from readme
 " if hidden is not set, TextEdit might fail.
@@ -162,13 +161,13 @@ nmap <F2> <Plug>(coc-rename)
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
-"augroup mygroup
-"  autocmd!
-"  " Setup formatexpr specified filetype(s).
-"  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-"  " Update signature help on jump placeholder
-"  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-"augroup end
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
 xmap <leader>a  <Plug>(coc-codeaction-selected)
@@ -190,7 +189,7 @@ nmap <silent> <C-d> <Plug>(coc-range-select)
 xmap <silent> <C-d> <Plug>(coc-range-select)
 
 " Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('runCommand', 'eslint.executeAutofix')
+command! -nargs=0 Format :call CocAction('format')
 
 " Use `:Fold` to fold current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
@@ -217,42 +216,48 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>all NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
+
+"" Commands helpers
 nnoremap <c-s> <Esc>:w<CR>
-" Copiar
+" Copy
 vnoremap <C-C> "+y
 vnoremap <C-Insert> "+y
-" Pegar
+" Page
 map <C-V>       "+gP
 map <S-Insert>      "+gP
 
 cmap <C-V>      <C-R>+
 cmap <S-Insert>     <C-R>+
 
-" PHP PSR
-" let g:php_cs_fixer_path = "~/php-cs-fixer.phar" " define the path to the php-cs-fixer.phar
+"" AIRLINE
+" air-line
+let g:airline_powerline_fonts = 1
 
-" If you use php-cs-fixer version 1.x
-let g:php_cs_fixer_level = "symfony"                   " options: --level (default:symfony)
-let g:php_cs_fixer_config = "default"                  " options: --config
-" If you want to define specific fixers:
-"let g:php_cs_fixer_fixers_list = "linefeed,short_tag" " options: --fixers
-"let g:php_cs_fixer_config_file = '.php_cs'            " options: --config-file
-" End of php-cs-fixer version 1 config params
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
 
-" If you use php-cs-fixer version 2.x
-let g:php_cs_fixer_rules = "@PSR12"          " options: --rules (default:@PSR2)
-"let g:php_cs_fixer_cache = ".php_cs.cache" " options: --cache-file
-"let g:php_cs_fixer_config_file = '.php_cs' " options: --config
-" End of php-cs-fixer version 2 config params
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
 
-let g:php_cs_fixer_php_path = "php"               " Path to PHP
-let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
-"let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
-"let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information.
-
-"Auto fix
-autocmd BufWritePost *.php silent! call PhpCsFixerFixFile()
-
-
+" airline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
