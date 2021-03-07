@@ -23,6 +23,7 @@ Plug 'leafOfTree/vim-vue-plugin'
 
 " One Dark
 Plug 'joshdick/onedark.vim'
+Plug 'Rigellute/shades-of-purple.vim'
 
 Plug 'sheerun/vim-polyglot'
 
@@ -34,7 +35,7 @@ Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 inoremap jk <ESC>
-autocmd VimEnter * NERDTree
+"autocmd VimEnter * NERDTree
 
 let g:NERDTreeGitStatusWithFlags = 1
 let g:NERDTreeChDirMode=2
@@ -79,6 +80,7 @@ if (has("termguicolors"))
 endif
 syntax on
 colorscheme onedark
+"colorscheme shades_of_purple
 
 let g:vim_vue_plugin_load_full_syntax = 1
 
@@ -192,7 +194,7 @@ xmap <silent> <C-d> <Plug>(coc-range-select)
 command! -nargs=0 Format :call CocAction('format')
 
 " Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+" command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
